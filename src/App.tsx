@@ -1,10 +1,11 @@
 import axios from "axios"
-import TodoApps from "components/Demo/Todo/TodoApp"
+
+import { MainContent, NavBar } from "containers"
 import Category from "models/category"
 import Product from "models/product"
 import React from "react"
 
-export default function App() {
+function App() {
     const func = async () => {
         const response = await axios.get<Product[]>(
             "https://fakestoreapi.com/products"
@@ -42,9 +43,12 @@ export default function App() {
     }
 
     return (
-        <>
-            <button onClick={func}>res</button>
-            <TodoApps />
-        </>
+        <div className="App">
+            <NavBar />
+            <hr className="horizon-line" />
+            <MainContent />
+        </div>
     )
 }
+
+export default App
