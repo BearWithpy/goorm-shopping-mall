@@ -46,6 +46,7 @@ const useStore = create<Store>(
     (set): Store => ({
         todos: [],
         newTodo: "",
+
         setTodos: (todos: Todo[]) =>
             set((state) => ({
                 ...state,

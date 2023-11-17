@@ -10,7 +10,9 @@ const UserIcon = () => {
                 aria-label="delete"
                 size="large"
                 color="inherit"
-                onClick={() => {}}
+                onClick={() => {
+                    alert(`uh uh oh... access denied!`)
+                }}
             >
                 <User width="35px" height="35px" />
             </IconButton>

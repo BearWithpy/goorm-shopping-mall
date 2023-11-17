@@ -1,8 +1,9 @@
 enum Category {
-    MensClothing = "men's clothing",
-    Jewelry = "jewelry",
-    Electronics = "electronics",
-    WomensClothing = "women's clothing",
+    ALL = "",
+    MENS_CLOTHING = "men's%20clothing",
+    JEWELRY = "jewelery",
+    ELECTRONICS = "electronics",
+    WOMENS_CLOTHING = "women's%20clothing",
 }
 
 export default Category
