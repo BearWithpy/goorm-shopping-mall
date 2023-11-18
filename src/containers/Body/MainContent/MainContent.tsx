@@ -4,18 +4,33 @@ import Category from "models/category"
 import useProductStore from "apps/productStore"
 import Loading from "pages/Loading/Loading"
 import { Grid } from "@mui/material"
+import { Link } from "react-router-dom"
+
+import Skeleton from "react-loading-skeleton"
+import "react-loading-skeleton/dist/skeleton.css"
+import useCartStore from "apps/cartStore"
+import Product from "models/product"
 
 const MainContent = () => {
     const store = useProductStore((state) => state)
-    // const store = useProductStore()
+    const { cartItems, setCarts, total, calculateTotal } = useCartStore()
+
     const [loading, setLoading] = useState(true)
+    const [loadedImagesCount, setLoadedImagesCount] = useState(0)
 
     useEffect(() => {
         loadCategoryData(Category.ALL)
     }, [])
 
+    const handleImageLoad = () => {
+        setLoadedImagesCount((prevCount) => prevCount + 1)
+    }
+    const allImagesLoaded = loadedImagesCount === store.products.length
+
     const loadCategoryData = async (category: Category) => {
         setLoading(true)
+        setLoadedImagesCount(0)
+
         try {
             await store.setProducts(category)
         } catch (error) {
@@ -23,6 +38,11 @@ const MainContent = () => {
         } finally {
             setLoading(false)
         }
+    }
+
+    const addToCart = (product: Product) => {
+        setCarts(product)
+        calculateTotal()
     }
 
     return (
@@ -64,33 +84,9 @@ const MainContent = () => {
                 {loading ? (
                     <Loading />
                 ) : (
-                    // store.products.map((product) => (
-                    //     <div
-                    //         className={styles.product_container}
-                    //         key={product.id}
-                    //     >
-                    //         <div className={styles.product_picture}>
-                    //             <img src={product.image} alt={product.title} />
-                    //         </div>
-                    //         <div className={styles.product_title_container}>
-                    //             <div className={styles.product_title}>
-                    //                 {product.title}
-                    //             </div>
-                    //         </div>
-                    //         <div className={styles.product_container_bottom}>
-                    //             <button className={`${styles.add_to_cart}`}>
-                    //                 장바구니에 담기
-                    //             </button>
-                    //             <div className={styles.product_price}>
-                    //                 ${product.price}
-                    //             </div>
-                    //         </div>
-                    //     </div>
-                    // ))
-
                     <div>
-                        Showing:{store.products.length} items
-                        <Grid container spacing={3}>
+                        <p>Showing: {store.products.length} items</p>
+                        <Grid container spacing={4}>
                             {store.products.map((product) => (
                                 <Grid
                                     item
@@ -98,43 +94,75 @@ const MainContent = () => {
                                     sm={6}
                                     md={4}
                                     lg={3}
+                                    xl={3}
                                     key={product.id}
                                 >
-                                    <div className={styles.product_container}>
-                                        <div className={styles.product_picture}>
-                                            <img
-                                                src={product.image}
-                                                alt={product.title}
-                                            />
-                                        </div>
+                                    <Link to={`/detail?id=${product.id}`}>
                                         <div
-                                            className={
-                                                styles.product_title_container
-                                            }
+                                            className={styles.product_container}
                                         >
                                             <div
-                                                className={styles.product_title}
+                                                className={
+                                                    styles.product_picture
+                                                }
                                             >
-                                                {product.title}
+                                                {!allImagesLoaded && (
+                                                    <Skeleton
+                                                        width={170}
+                                                        height={220}
+                                                    />
+                                                )}
+                                                <img
+                                                    src={product.image}
+                                                    alt={product.title}
+                                                    onLoad={handleImageLoad}
+                                                    style={{
+                                                        display: allImagesLoaded
+                                                            ? "block"
+                                                            : "none",
+                                                    }}
+                                                />
                                             </div>
-                                        </div>
-                                        <div
-                                            className={
-                                                styles.product_container_bottom
-                                            }
-                                        >
-                                            <button
-                                                className={`${styles.add_to_cart}`}
-                                            >
-                                                장바구니에 담기
-                                            </button>
                                             <div
-                                                className={styles.product_price}
+                                                className={
+                                                    styles.product_title_container
+                                                }
                                             >
-                                                ${product.price}
+                                                <div
+                                                    className={
+                                                        styles.product_title
+                                                    }
+                                                >
+                                                    {product.title}
+                                                </div>
+                                            </div>
+                                            <div
+                                                className={
+                                                    styles.product_container_bottom
+                                                }
+                                            >
+                                                <button
+                                                    className={`${styles.add_to_cart}`}
+                                                    onClick={(e) => {
+                                                        e.preventDefault()
+                                                        console.log(
+                                                            `${product.title}가 담김!`
+                                                        )
+                                                        addToCart(product)
+                                                    }}
+                                                >
+                                                    장바구니에 담기
+                                                </button>
+                                                <div
+                                                    className={
+                                                        styles.product_price
+                                                    }
+                                                >
+                                                    ${product.price}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </Link>
                                 </Grid>
                             ))}
                         </Grid>

@@ -1,10 +1,10 @@
+import useCartStore from "apps/cartStore"
 import React from "react"
 
-interface CountProps {
-    count: number
-}
-const CartHeaderCounter = ({ count }: CountProps): React.JSX.Element => {
+const CartHeaderCounter = (): React.JSX.Element => {
     let counterClass
+    const { cartItems } = useCartStore()
+    const count = cartItems.length
 
     if (count >= 99) {
         counterClass = "counter-number-over99"

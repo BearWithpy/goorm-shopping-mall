@@ -1,17 +1,11 @@
 import React, { useRef } from "react"
 
-import {
-    Button,
-    Container,
-    Grid,
-    Link,
-    TextField,
-    Typography,
-} from "@mui/material"
+import { Button, Container, Grid, TextField, Typography } from "@mui/material"
 import { signInWithEmailAndPassword } from "@firebase/auth"
 import { firebaseAuth } from "models/firebase"
 import { FirebaseError } from "@firebase/util"
-import { Navigate, useNavigate } from "react-router"
+import { useNavigate } from "react-router"
+import { Link } from "react-router-dom"
 
 const LoginPage = () => {
     const emailRef = useRef<HTMLInputElement>(null)
@@ -33,6 +27,9 @@ const LoginPage = () => {
                 email,
                 password
             )
+
+            // const { stsTokenManager, uid } = user;
+            // setAuthInfo({ uid, email, authToken: stsTokenManager });
 
             alert(`Welcome!!`)
             navigate("/")
@@ -57,28 +54,6 @@ const LoginPage = () => {
                 console.error(err)
             }
         }
-
-        // axios
-        //     .post("http://localhost:7777/auth/signin", {
-        //         email: email,
-        //         password: password,
-        //     })
-        //     .then((response) => {
-        //         // console.log(response.data)
-        //         // console.log(response.data.name)
-        //         onClose()
-        //         localStorage.setItem("ACCESS_TOKEN", response.data.token)
-        //         localStorage.setItem("USER_NAME", response.data.name)
-        //         localStorage.setItem("USER_EMAIL", response.data.email)
-        //         localStorage.setItem("ID", response.data.id)
-        //         window.location.href = "/"
-        //     })
-        //     .catch((error) => {
-        //         console.error(error)
-        //         alert("Wrong ID or Password")
-
-        //         return
-        //     })
     }
 
     return (
@@ -132,7 +107,14 @@ const LoginPage = () => {
                     </Grid>
 
                     <Grid container justifyContent="flex-end">
-                        <Link href="/signup" variant="body2">
+                        <Link
+                            to="/signup"
+                            style={{
+                                textDecoration: "none",
+                                color: "black",
+                                marginTop: "5px",
+                            }}
+                        >
                             <Grid item>
                                 계정이 없습니까? 여기서 가입하세요.
                             </Grid>
