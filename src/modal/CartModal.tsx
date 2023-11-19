@@ -11,8 +11,9 @@ import React from "react"
 import Modal from "react-modal"
 import CloseIcon from "@mui/icons-material/Close"
 import styles from "./cartmodal.module.css"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import CartPage from "pages/CartPage/CartPage"
+import ModalContents from "./ModalContents"
 
 interface ModalProps {
     isOpen: boolean
@@ -26,11 +27,13 @@ const customStyles = {
         backgroundColor: "rgba(0, 0, 0, 0)",
     },
     content: {
-        top: "15%",
-        left: "75%",
+        width: "570px",
+        top: "420px",
+        left: "1000px",
         right: "auto",
         bottom: "auto",
         marginRight: "-50%",
+        marginBottom: "0",
         transform: "translate(-50%, -50%)",
     },
 }
@@ -44,25 +47,28 @@ const CartModal = ({ isOpen, onClose }: ModalProps) => {
             </IconButton>
             <Container
                 component="main"
-                maxWidth="xs"
-                style={{ marginTop: "5%", marginBottom: "10%" }}
+                maxWidth="xl"
+                style={{ marginTop: "5%" }}
             >
                 <Grid item xs={12} style={{ margin: "20px" }}>
-                    <Typography component="h1" variant="h5">
+                    {/* <Typography component="h1" variant="h5">
                         Cart Modal창입니다ㅏㅏㅏ
-                    </Typography>
+                    </Typography> */}
                 </Grid>
-                <CartPage />
-                <button
-                    className={`${styles.add_to_cart}`}
-                    onClick={(e) => {
-                        e.preventDefault()
-                        navigate("/cart")
-                        onClose()
-                    }}
-                >
-                    장바구니로 이동
-                </button>
+                <ModalContents />
+                {/* <CartPage /> */}
+                <div className={`${styles.move_to_cart}`}>
+                    <button
+                        className={`${styles.move_to_cart}`}
+                        onClick={(e) => {
+                            e.preventDefault()
+                            navigate("/cart")
+                            onClose()
+                        }}
+                    >
+                        장바구니로 이동
+                    </button>
+                </div>
             </Container>
         </Modal>
     )

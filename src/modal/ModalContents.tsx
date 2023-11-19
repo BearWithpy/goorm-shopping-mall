@@ -1,13 +1,13 @@
-import React from "react"
 import useCartStore from "apps/cartStore"
-import styles from "./cartcontent.module.css"
-import Counter from "components/Counter/Counter"
-
-import { ReactComponent as TrashBin } from "assets/icons/bin.svg"
-import { Grid, IconButton } from "@mui/material"
+import React from "react"
 import { useNavigate } from "react-router-dom"
 
-const CartContent = () => {
+import styles from "./cartmodal.module.css"
+import { IconButton } from "@mui/material"
+
+import { ReactComponent as TrashBin } from "assets/icons/bin2.svg"
+
+const ModalContents = () => {
     const { cartItems, total, clearCarts, deleteOneFromCarts, calculateTotal } =
         useCartStore()
 
@@ -15,21 +15,23 @@ const CartContent = () => {
 
     return (
         <div>
-            <div className={styles.page_title}>장바구니</div>
             <div className={styles.cart_items}>
                 {cartItems.map((item) => (
                     <li key={item.id} className={styles.cart_items_li}>
                         <div className={styles.cart_items_container}>
                             <div className={styles.cart_items_left_container}>
-                                <img
-                                    src={item.image}
-                                    alt={item.title}
-                                    className={styles.cart_img}
-                                    // onLoad={handleImageLoad}
-                                    // style={{
-                                    //     display: loadedImage ? "block" : "none",
-                                    // }}
-                                />
+                                <div>
+                                    <img
+                                        src={item.image}
+                                        alt={item.title}
+                                        className={styles.cart_img}
+                                        // onLoad={handleImageLoad}
+                                        // style={{
+                                        //     display: loadedImage ? "block" : "none",
+                                        // }}
+                                    />
+                                </div>
+
                                 <div className={styles.item_info}>
                                     <div className={styles.item_category}>
                                         {item.category}
@@ -51,12 +53,6 @@ const CartContent = () => {
                                         )}
                                     </div>
                                 </div>
-                            </div>
-                            <div className={styles.counter}>
-                                <Counter
-                                    count={item.quantity}
-                                    productId={item.id}
-                                />
                             </div>
 
                             <IconButton
@@ -80,19 +76,10 @@ const CartContent = () => {
                         Total: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$
                         {total}
                     </div>
-                    <button
-                        className={`${styles.calc_cart}`}
-                        onClick={(e) => {
-                            e.preventDefault()
-                            clearCarts()
-                        }}
-                    >
-                        계산하기
-                    </button>
                 </div>
             </div>
         </div>
     )
 }
 
-export default CartContent
+export default ModalContents
