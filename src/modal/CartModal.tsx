@@ -12,6 +12,7 @@ import Modal from "react-modal"
 import CloseIcon from "@mui/icons-material/Close"
 import styles from "./cartmodal.module.css"
 import { useNavigate } from "react-router-dom"
+import CartPage from "pages/CartPage/CartPage"
 
 interface ModalProps {
     isOpen: boolean
@@ -51,6 +52,7 @@ const CartModal = ({ isOpen, onClose }: ModalProps) => {
                         Cart Modal창입니다ㅏㅏㅏ
                     </Typography>
                 </Grid>
+                <CartPage />
                 <button
                     className={`${styles.add_to_cart}`}
                     onClick={(e) => {

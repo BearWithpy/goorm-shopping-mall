@@ -2,17 +2,11 @@
     width: 120px;
     height: 45px;
     margin-top: 15px;
-    color: gray;
-    background-color: white;
-    border: 1px solid gray;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: all 0.2s;
-}
-
-.add_to_cart:hover {
     background-color: rgb(120, 122, 136);
     color: white;
     font-weight: bold;
     transition: all 0.3s;
+    border: 1px solid gray;
+    border-radius: 5px;
+    /* cursor: pointer; */
 }
