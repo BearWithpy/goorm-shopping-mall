@@ -115,6 +115,7 @@ const MainContent = () => {
                                                 <img
                                                     src={product.image}
                                                     alt={product.title}
+                                                    className={styles.main_img}
                                                     onLoad={handleImageLoad}
                                                     style={{
                                                         display: allImagesLoaded
