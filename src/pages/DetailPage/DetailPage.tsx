@@ -22,7 +22,7 @@ const DetailPage = () => {
     const searchParams = new URLSearchParams(location.search)
     const queryValue = searchParams.get("id")
 
-    const { cartItems, setCarts, total, calculateTotal } = useCartStore()
+    const { setCarts, calculateTotal } = useCartStore()
 
     const addToCart = (product: Product) => {
         setCarts(product)
