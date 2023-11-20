@@ -9,14 +9,7 @@ interface CounterProps {
 }
 
 const Counter = ({ count, productId }: CounterProps) => {
-    const {
-        cartItems,
-        total,
-        clearCarts,
-        incQuantity,
-        decQuantity,
-        calculateTotal,
-    } = useCartStore()
+    const { incQuantity, decQuantity, calculateTotal } = useCartStore()
 
     return (
         <div>

@@ -1,7 +1,7 @@
-import CartProduct from "models/cartProduct"
-import Product from "models/product"
-
 import { create } from "zustand"
+
+import Product from "models/product"
+import CartProduct from "models/cartProduct"
 
 type CartStore = {
     total: number

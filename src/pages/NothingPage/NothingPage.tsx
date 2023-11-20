@@ -1,10 +1,9 @@
 import React from "react"
 import styles from "pages/NothingPage/nothing.module.css"
 import { ReactComponent as EmptyCart } from "assets/icons/empty_cart.svg"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 
 const NothingPage = () => {
-    const navigate = useNavigate()
     return (
         <div className={styles.empty_cart_container}>
             <EmptyCart width={500} height={500} />

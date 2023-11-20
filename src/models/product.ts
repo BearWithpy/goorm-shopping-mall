@@ -9,5 +9,4 @@ type Product = {
     image: string
 }
 
-// type ProductsResponse = Product[];
 export default Product

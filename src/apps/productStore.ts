@@ -1,7 +1,8 @@
+import { create } from "zustand"
 import axios from "axios"
+
 import Category from "models/category"
 import Product from "models/product"
-import { create } from "zustand"
 
 type ProductStore = {
     detailProduct: Product

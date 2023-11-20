@@ -1,14 +1,14 @@
-import useCartStore from "apps/cartStore"
 import React from "react"
 import { useNavigate } from "react-router-dom"
-
-import styles from "./cartmodal.module.css"
 import { IconButton } from "@mui/material"
 
+import styles from "./cartmodal.module.css"
+
+import useCartStore from "apps/cartStore"
 import { ReactComponent as TrashBin } from "assets/icons/bin2.svg"
 
 const ModalContents = () => {
-    const { cartItems, total, clearCarts, deleteOneFromCarts, calculateTotal } =
+    const { cartItems, total, deleteOneFromCarts, calculateTotal } =
         useCartStore()
 
     const navigate = useNavigate()

@@ -1,19 +1,20 @@
 import React, { useEffect, useState } from "react"
-import styles from "./maincontent.module.css"
-import Category from "models/category"
-import useProductStore from "apps/productStore"
-import Loading from "pages/Loading/Loading"
 import { Grid } from "@mui/material"
 import { Link } from "react-router-dom"
 
+import styles from "./maincontent.module.css"
 import Skeleton from "react-loading-skeleton"
 import "react-loading-skeleton/dist/skeleton.css"
+
+import Category from "models/category"
+import Loading from "pages/Loading/Loading"
+import useProductStore from "apps/productStore"
 import useCartStore from "apps/cartStore"
 import Product from "models/product"
 
 const MainContent = () => {
     const store = useProductStore((state) => state)
-    const { cartItems, setCarts, total, calculateTotal } = useCartStore()
+    const { setCarts, calculateTotal } = useCartStore()
 
     const [loading, setLoading] = useState(true)
     const [loadedImagesCount, setLoadedImagesCount] = useState(0)

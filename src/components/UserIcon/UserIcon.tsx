@@ -1,7 +1,7 @@
 import React from "react"
+import { IconButton } from "@mui/material"
 
 import { ReactComponent as User } from "assets/icons/user.svg"
-import { IconButton } from "@mui/material"
 
 const UserIcon = () => {
     return (

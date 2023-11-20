@@ -1,5 +1,6 @@
-import useCartStore from "apps/cartStore"
 import React from "react"
+
+import useCartStore from "apps/cartStore"
 
 const CartHeaderCounter = (): React.JSX.Element => {
     let counterClass

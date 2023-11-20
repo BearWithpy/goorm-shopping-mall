@@ -1,11 +1,13 @@
 import React from "react"
+
+import { IconButton } from "@mui/material"
+import { useNavigate } from "react-router-dom"
+
 import useCartStore from "apps/cartStore"
 import styles from "./cartcontent.module.css"
 import Counter from "components/Counter/Counter"
 
 import { ReactComponent as TrashBin } from "assets/icons/bin.svg"
-import { Grid, IconButton } from "@mui/material"
-import { useNavigate } from "react-router-dom"
 
 const CartContent = () => {
     const { cartItems, total, clearCarts, deleteOneFromCarts, calculateTotal } =
